@@ -94,7 +94,6 @@ public class Main {
 		
 		add(c, c2);
 		System.out.println(c.getCapacity());
-		
 	
 	}
 
