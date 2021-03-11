@@ -2,7 +2,6 @@ package ro.ase.acs.classes;
 
 import java.io.FileInputStream;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -53,17 +52,7 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Car [color=");
-		builder.append(color);
-		builder.append(", capacity=");
-		builder.append(capacity);
-		builder.append(", name=");
-		builder.append(getName());
-		builder.append(", speed=");
-		builder.append(getSpeed());
-		builder.append("]");
-		return builder.toString();
+		return "Car color: " + color + ", capacity: " + capacity + ", name: " + getName() + ", speed: " + getSpeed();
 	}
 
 	@Override
