@@ -10,8 +10,6 @@ import java.io.ObjectOutputStream;
 
 import ro.ase.acs.interfaces.Taxable;
 
-//Car is Serializable because it extends Vehicle
-//which is Serializable
 public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 	private static final long serialVersionUID = 1L;
 	private String color;
@@ -53,12 +51,6 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 		return copy;
 	}
 
-	//The toString method is called in order to
-	//convert to object into a String
-	//for example when we want to display it to the console
-	//
-	//String concatenation is not the best approach
-	//so we used StringBuilder instead
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -92,9 +84,6 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 				" km/h");
 	}
 
-	//compareTo method from the Comparable interface
-	//is used by TreeSet or TreeMap collections
-	//in order to insert the elements/keys
 	@Override
 	public int compareTo(Car o) {
 		if(capacity < o.capacity) {
@@ -107,10 +96,6 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 	}
 
 	
-	//every time we override hashCode we should override equals too
-	//and vice-versa
-	//for two objects for which equals return true, the hashCode
-	//should be the same (the opposite is not true)
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Car) {
@@ -121,14 +106,13 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 		return false;
 	}
 
-	//usually we use prime numbers in order to generate unique integer values
-	//the probability to have collisions is lower in this manner
+	
 	@Override
 	public int hashCode() {
 		return (31 * getName().hashCode() + getSpeed()) * 31 * color.hashCode() + capacity;
 	}
 	
-	//binary serialization
+	
 	public void serialize() {
 		FileOutputStream fileOutputStream = null;
 		ObjectOutputStream outputStream = null;
@@ -140,8 +124,6 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 						new ObjectOutputStream(fileOutputStream);
 				outputStream.writeObject(this);
 			}
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -156,7 +138,7 @@ public final class Car extends Vehicle implements Taxable, Comparable<Car> {
 		}
 	}
 	
-	//binary deserialization
+	
 	public static Car deserialize() throws IOException, ClassNotFoundException {
 		FileInputStream fileInputStream =
 				new FileInputStream("object.bin");

@@ -16,7 +16,7 @@ import ro.ase.acs.classes.Car;
 public class NewMain {
 
 	public static void main(String[] args) {
-		//Reading information from the Console example
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		String yourName = "";
@@ -33,7 +33,7 @@ public class NewMain {
 		
 		Car car = new Car("Renault", 90, "blue", 1500);
 		
-		//writing values into a text file
+		
 		try {
 			FileOutputStream fileOutputStream =
 					new FileOutputStream("car.txt");
@@ -55,7 +55,6 @@ public class NewMain {
 			e.printStackTrace();
 		}
 		
-		//reading values from a text file
 		try {
 			FileInputStream fileInputStream =
 					new FileInputStream("car.txt");
@@ -74,8 +73,6 @@ public class NewMain {
 			e.printStackTrace();
 		}
 		
-		//writing data into a binary file
-		//field-by-field approach
 		try {
 			FileOutputStream binaryOutputStream =
 					new FileOutputStream("car.bin");
@@ -90,14 +87,10 @@ public class NewMain {
 			e.printStackTrace();
 		}
 		
-		//reading data from a binary file
-		//field-by-field approach
 		try(FileInputStream binaryInputStream =
 				new FileInputStream("car.bin"); DataInputStream dataInputStream =
 				new DataInputStream(binaryInputStream)) {
-			//the try from above is called "try with resources"
-			//because it automatically closes all the streams specified
-			//between the round brackets
+
 			String name = dataInputStream.readUTF();
 			int speed = dataInputStream.readInt();
 			String color = dataInputStream.readUTF();
@@ -109,14 +102,8 @@ public class NewMain {
 			e.printStackTrace();
 		}
 		
-		//object serialization
-		//we don't need try-catch because the exception
-		//is handled in the Car class
 		car.serialize();
 		
-		//object deserialization
-		//we need try-catch because the exception
-		//is thrown further by the method
 		try {
 			Car c3 = Car.deserialize();
 			System.out.println(c3);

@@ -2,11 +2,8 @@ package ro.ase.acs.classes;
 
 import java.io.Serializable;
 
-//a class should implement Serializable in order
-//to be serialized
 public abstract class Vehicle implements Cloneable, Serializable {
-	//this field is used to identify the version of the class
-	//and it should be incremented when the class changes
+	
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private int speed;
